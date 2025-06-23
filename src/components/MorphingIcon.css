@@ -1,0 +1,48 @@
+.morphing-icon {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-block;
+  color: #ff6b35;
+}
+
+.morphing-icon:hover {
+  transform: scale(1.1);
+  color: #ff8c42;
+}
+
+/* Анімація меню -> X */
+.morphing-icon .line {
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transform-origin: center;
+}
+
+.morphing-icon.active .line1 {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.morphing-icon.active .line2 {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.morphing-icon.active .line3 {
+  transform: rotate(-45deg) translate(7px, -6px);
+}
+
+/* Анімація серця */
+.heart-path {
+  transition: all 0.3s ease;
+  transform-origin: center;
+}
+
+.morphing-icon.active .heart-path {
+  animation: heartbeat 0.6s ease-in-out;
+  fill: #e74c3c;
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  25% { transform: scale(1.2); }
+  50% { transform: scale(1.1); }
+  75% { transform: scale(1.25); }
+}

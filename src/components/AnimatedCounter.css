@@ -1,0 +1,25 @@
+.animated-counter {
+  display: inline-block;
+  font-weight: bold;
+  font-size: 2.5rem;
+  color: #ff6b35;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.counter-value {
+  display: inline-block;
+  animation: counterGlow 2s ease-in-out;
+}
+
+@keyframes counterGlow {
+  0% {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  50% {
+    text-shadow: 0 0 20px rgba(255, 107, 53, 0.6),
+                 2px 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  100% {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  }
+}

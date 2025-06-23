@@ -1,0 +1,57 @@
+.animated-gradient {
+  position: relative;
+  overflow: hidden;
+  border-radius: 15px;
+}
+
+.gradient-overlay {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    #ff6b35,
+    #f7931e,
+    #ffd23f,
+    #06ffa5,
+    #00d4ff,
+    #7b68ee,
+    #ff6b35
+  );
+  background-size: 400% 400%;
+  animation: gradientShift 8s ease infinite;
+  opacity: 0.8;
+  z-index: -1;
+}
+
+.animated-gradient.primary .gradient-overlay {
+  background: linear-gradient(
+    45deg,
+    #667eea 0%,
+    #764ba2 100%
+  );
+  background-size: 400% 400%;
+}
+
+.animated-gradient.secondary .gradient-overlay {
+  background: linear-gradient(
+    45deg,
+    #f093fb 0%,
+    #f5576c 100%
+  );
+  background-size: 400% 400%;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  padding: 2rem;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
