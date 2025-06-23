@@ -1,0 +1,32 @@
+{
+  "files": {
+    "main.css": "/usa_Car/static/css/main.ccd43444.css",
+    "main.js": "/usa_Car/static/js/main.0b24d8b6.js",
+    "static/js/453.5631230d.chunk.js": "/usa_Car/static/js/453.5631230d.chunk.js",
+    "static/media/bcg_bmw.mp4": "/usa_Car/static/media/bcg_bmw.5692726e2c3538868f95.mp4",
+    "static/media/gallery5.jpg": "/usa_Car/static/media/gallery5.8f108eb6ce36f533400f.jpg",
+    "static/media/g63.png": "/usa_Car/static/media/g63.5a654aaa09b0e90c3799.png",
+    "static/media/gallery2.jpg": "/usa_Car/static/media/gallery2.9539aa4536afe419c722.jpg",
+    "static/media/rs6.png": "/usa_Car/static/media/rs6.3a8c8687e4d1020d3a67.png",
+    "static/media/gallery7.jpg": "/usa_Car/static/media/gallery7.51bd67016273bbe24635.jpg",
+    "static/media/m4bmw.png": "/usa_Car/static/media/m4bmw.ab37ff9781c6fce89077.png",
+    "static/media/gallery1.jpg": "/usa_Car/static/media/gallery1.845f8898cef2517b3a14.jpg",
+    "static/media/gallery6.jpg": "/usa_Car/static/media/gallery6.58b2e8c5e8ce05a04dca.jpg",
+    "static/media/gallery3.jpg": "/usa_Car/static/media/gallery3.526deba111f9b34c2632.jpg",
+    "static/media/gallery4.jpg": "/usa_Car/static/media/gallery4.29ee7fe6986aa495dbd1.jpg",
+    "static/media/price-tag.png": "/usa_Car/static/media/price-tag.72e583da6f426bc5a66e.png",
+    "static/media/public-relation.png": "/usa_Car/static/media/public-relation.ada36a72d7b90b8928ac.png",
+    "static/media/call.png": "/usa_Car/static/media/call.85641426eb758c73eed8.png",
+    "static/media/paper-documents.png": "/usa_Car/static/media/paper-documents.8285596ae5651a1e7a04.png",
+    "static/media/pin-location.png": "/usa_Car/static/media/pin-location.19824315be34b30804bc.png",
+    "static/media/sedan.png": "/usa_Car/static/media/sedan.1719fcebea9704830cae.png",
+    "index.html": "/usa_Car/index.html",
+    "main.ccd43444.css.map": "/usa_Car/static/css/main.ccd43444.css.map",
+    "main.0b24d8b6.js.map": "/usa_Car/static/js/main.0b24d8b6.js.map",
+    "453.5631230d.chunk.js.map": "/usa_Car/static/js/453.5631230d.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ccd43444.css",
+    "static/js/main.0b24d8b6.js"
+  ]
+}
