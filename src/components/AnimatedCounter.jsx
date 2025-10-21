@@ -1,42 +1,74 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { useScrollAnimation } from '../hooks/useScrollAnimation';
+import { useState, useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './AnimatedCounter.css';
 
-const AnimatedCounter = ({ end, duration = 2000, suffix = '', prefix = '' }) => {
+gsap.registerPlugin(ScrollTrigger);
+
+const AnimatedCounter = ({ end, duration = 2, suffix = '', prefix = '' }) => {
   const [count, setCount] = useState(0);
-  const [hasAnimated, setHasAnimated] = useState(false);
   const counterRef = useRef(null);
-  const isVisible = useScrollAnimation(counterRef);
+  const numberRef = useRef(null);
 
   useEffect(() => {
-    if (isVisible && !hasAnimated) {
-      setHasAnimated(true);
-      let startTime = null;
-      const startCount = 0;
-      
-      const animate = (currentTime) => {
-        if (startTime === null) startTime = currentTime;
-        const progress = Math.min((currentTime - startTime) / duration, 1);
-        
-        const easeOutQuart = 1 - Math.pow(1 - progress, 4);
-        const currentCount = Math.floor(easeOutQuart * (end - startCount) + startCount);
-        
-        setCount(currentCount);
-        
-        if (progress < 1) {
-          requestAnimationFrame(animate);
-        } else {
-          setCount(end);
-        }
-      };
-      
-      requestAnimationFrame(animate);
-    }
-  }, [isVisible, end, duration, hasAnimated]);
+    const element = counterRef.current;
+    const numberElement = numberRef.current;
+
+    // GSAP Counter анімація
+    const counter = { value: 0 };
+    
+    gsap.to(counter, {
+      value: end,
+      duration: duration,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: element,
+        start: 'top 85%',
+        toggleActions: 'play none none none',
+        once: true
+      },
+      onUpdate: () => {
+        setCount(Math.floor(counter.value));
+      }
+    });
+
+    // Анімація масштабування та пульсації
+    gsap.from(numberElement, {
+      scale: 0.5,
+      opacity: 0,
+      duration: 0.8,
+      ease: 'back.out(1.7)',
+      scrollTrigger: {
+        trigger: element,
+        start: 'top 85%',
+        toggleActions: 'play none none none',
+        once: true
+      }
+    });
+
+    // Пульсація при завершенні
+    gsap.to(numberElement, {
+      scale: 1.1,
+      duration: 0.3,
+      ease: 'power2.out',
+      yoyo: true,
+      repeat: 1,
+      delay: duration,
+      scrollTrigger: {
+        trigger: element,
+        start: 'top 85%',
+        once: true
+      }
+    });
+
+    return () => {
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+    };
+  }, [end, duration]);
 
   return (
     <div ref={counterRef} className="animated-counter">
-      <span className="counter-value">
+      <span ref={numberRef} className="counter-value">
         {prefix}{count.toLocaleString()}{suffix}
       </span>
     </div>

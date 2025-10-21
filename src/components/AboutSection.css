@@ -169,11 +169,16 @@ background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
 }
 
 .stat-number {
-  font-size: 3rem;
+  font-size: 4rem;
   font-weight: 900;
-  color: #e74c3c;
+  background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   margin-bottom: 0.5rem;
   line-height: 1;
+  text-shadow: 0 0 30px rgba(255, 107, 53, 0.5);
+  filter: drop-shadow(0 0 20px rgba(255, 107, 53, 0.7));
 }
 
 .stat-label {

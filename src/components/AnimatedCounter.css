@@ -1,25 +1,68 @@
 .animated-counter {
   display: inline-block;
   font-weight: bold;
-  font-size: 2.5rem;
-  color: #ff6b35;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  font-size: inherit;
+  position: relative;
 }
 
 .counter-value {
   display: inline-block;
-  animation: counterGlow 2s ease-in-out;
+  background: linear-gradient(135deg, #ff6b35 0%, #f7931e 50%, #ff6b35 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-size: 200% 200%;
+  animation: gradientShift 3s ease infinite, counterFloat 2s ease-in-out infinite;
+  text-shadow: 0 0 30px rgba(255, 107, 53, 0.5);
+  filter: drop-shadow(0 0 10px rgba(255, 107, 53, 0.4));
+  font-weight: 900;
+  position: relative;
+  will-change: transform;
 }
 
-@keyframes counterGlow {
+.counter-value::before {
+  content: attr(data-value);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: blur(10px);
+  opacity: 0.6;
+}
+
+/* Gradient shift анімація */
+@keyframes gradientShift {
   0% {
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    background-position: 0% 50%;
   }
   50% {
-    text-shadow: 0 0 20px rgba(255, 107, 53, 0.6),
-                 2px 2px 4px rgba(0, 0, 0, 0.1);
+    background-position: 100% 50%;
   }
   100% {
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    background-position: 0% 50%;
+  }
+}
+
+/* Float анімація */
+@keyframes counterFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Glow pulse */
+@keyframes glowPulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 10px rgba(255, 107, 53, 0.4));
+  }
+  50% {
+    filter: drop-shadow(0 0 20px rgba(255, 107, 53, 0.8));
   }
 }

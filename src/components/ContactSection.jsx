@@ -1,4 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import { motion } from 'framer-motion';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
 import './ContactSection.css';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
@@ -8,14 +12,28 @@ import priceIcon from '../images/icons/price-tag.png';
 import documentsIcon from '../images/icons/paper-documents.png';
 import publicRelationIcon from '../images/icons/public-relation.png';
 
+// Схема валідації
+const schema = yup.object({
+  name: yup
+    .string()
+    .required("Ім'я обов'язкове")
+    .min(2, "Ім'я повинно містити мінімум 2 символи")
+    .matches(/^[а-яА-ЯіІїЇєЄa-zA-Z\s]+$/, "Ім'я може містити тільки літери"),
+  phone: yup
+    .string()
+    .required("Телефон обов'язковий")
+    .matches(/^\+?3?8?(0\d{9})$/, "Введіть коректний номер телефону"),
+  email: yup
+    .string()
+    .required("Email обов'язковий")
+    .email("Введіть коректний email"),
+  carModel: yup.string(),
+  message: yup.string()
+}).required();
+
 const ContactSection = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    phone: '',
-    email: '',
-    carModel: '',
-    message: ''
-  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
 
   // Хуки для анімацій
   const [titleRef, titleVisible] = useScrollAnimation(0.1);
@@ -23,21 +41,35 @@ const ContactSection = () => {
   const [featuresRef, featuresVisible] = useScrollAnimation(0.1);
   const [formRef, formVisible] = useScrollAnimation(0.1);
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
+  // React Hook Form
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset
+  } = useForm({
+    resolver: yupResolver(schema),
+    mode: 'onBlur'
+  });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Form submitted:', formData);
-    // Тут буде логіка відправки форми
+  const onSubmit = async (data) => {
+    setIsSubmitting(true);
+    try {
+      // Симуляція відправки форми
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      console.log('Form submitted:', data);
+      setSubmitSuccess(true);
+      reset();
+      setTimeout(() => setSubmitSuccess(false), 5000);
+    } catch (error) {
+      console.error('Error submitting form:', error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
-    <section className="contact-section">
+    <section id="contact" className="contact-section">
       <div className="container">
         <div className="contact-content">
           <div className="contact-info">
@@ -60,11 +92,19 @@ const ContactSection = () => {
               </p>
             </div>
             
-            <div 
+            <motion.div 
               ref={featuresRef}
               className={`contact-features ${featuresVisible ? 'animate-in' : ''}`}
+              initial={{ opacity: 0, y: 30 }}
+              animate={featuresVisible ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6 }}
             >
-              <div className="contact-feature" style={{animationDelay: '0.1s'}}>
+              <motion.div 
+                className="contact-feature"
+                initial={{ opacity: 0, x: -30 }}
+                animate={featuresVisible ? { opacity: 1, x: 0 } : {}}
+                transition={{ delay: 0.1, duration: 0.5 }}
+              >
                 <div className="feature-icon">
                   <img src={callIcon} alt="Безкоштовна консультація" />
                 </div>
@@ -72,9 +112,14 @@ const ContactSection = () => {
                   <h4>Безкоштовна консультація</h4>
                   <p>Детальна консультація по всім питанням</p>
                 </div>
-              </div>
+              </motion.div>
               
-              <div className="contact-feature" style={{animationDelay: '0.2s'}}>
+              <motion.div 
+                className="contact-feature"
+                initial={{ opacity: 0, x: -30 }}
+                animate={featuresVisible ? { opacity: 1, x: 0 } : {}}
+                transition={{ delay: 0.2, duration: 0.5 }}
+              >
                 <div className="feature-icon">
                   <img src={priceIcon} alt="Розрахунок вартості" />
                 </div>
@@ -82,9 +127,14 @@ const ContactSection = () => {
                   <h4>Точний розрахунок</h4>
                   <p>Розрахунок повної вартості з усіма витратами</p>
                 </div>
-              </div>
+              </motion.div>
               
-              <div className="contact-feature" style={{animationDelay: '0.3s'}}>
+              <motion.div 
+                className="contact-feature"
+                initial={{ opacity: 0, x: -30 }}
+                animate={featuresVisible ? { opacity: 1, x: 0 } : {}}
+                transition={{ delay: 0.3, duration: 0.5 }}
+              >
                 <div className="feature-icon">
                   <img src={documentsIcon} alt="Документи" />
                 </div>
@@ -92,9 +142,14 @@ const ContactSection = () => {
                   <h4>Повне оформлення</h4>
                   <p>Всі документи та дозволи під ключ</p>
                 </div>
-              </div>
+              </motion.div>
               
-              <div className="contact-feature" style={{animationDelay: '0.4s'}}>
+              <motion.div 
+                className="contact-feature"
+                initial={{ opacity: 0, x: -30 }}
+                animate={featuresVisible ? { opacity: 1, x: 0 } : {}}
+                transition={{ delay: 0.4, duration: 0.5 }}
+              >
                 <div className="feature-icon">
                   <img src={publicRelationIcon} alt="Підтримка" />
                 </div>
@@ -102,75 +157,116 @@ const ContactSection = () => {
                   <h4>Постійна підтримка</h4>
                   <p>Супровід на всіх етапах процесу</p>
                 </div>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           </div>
           
-          <div 
+          <motion.div 
             ref={formRef}
             className={`contact-form-wrapper ${formVisible ? 'animate-in' : ''}`}
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={formVisible ? { opacity: 1, scale: 1 } : {}}
+            transition={{ duration: 0.6 }}
           >
-            <form className="contact-form" onSubmit={handleSubmit}>
+            <form className="contact-form" onSubmit={handleSubmit(onSubmit)}>
               <h3>Залишити заявку</h3>
+              
+              {submitSuccess && (
+                <motion.div 
+                  className="success-message"
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0 }}
+                >
+                  ✓ Заявка успішно відправлена! Ми зв'яжемося з вами найближчим часом.
+                </motion.div>
+              )}
               
               <div className="form-group">
                 <input
                   type="text"
-                  name="name"
                   placeholder="Ваше ім'я"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
+                  {...register('name')}
+                  className={errors.name ? 'error' : ''}
                 />
+                {errors.name && (
+                  <motion.span 
+                    className="error-message"
+                    initial={{ opacity: 0, y: -5 }}
+                    animate={{ opacity: 1, y: 0 }}
+                  >
+                    {errors.name.message}
+                  </motion.span>
+                )}
               </div>
               
               <div className="form-group">
                 <input
                   type="tel"
-                  name="phone"
                   placeholder="Номер телефону"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  required
+                  {...register('phone')}
+                  className={errors.phone ? 'error' : ''}
                 />
+                {errors.phone && (
+                  <motion.span 
+                    className="error-message"
+                    initial={{ opacity: 0, y: -5 }}
+                    animate={{ opacity: 1, y: 0 }}
+                  >
+                    {errors.phone.message}
+                  </motion.span>
+                )}
               </div>
               
               <div className="form-group">
                 <input
                   type="email"
-                  name="email"
                   placeholder="Email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
+                  {...register('email')}
+                  className={errors.email ? 'error' : ''}
                 />
+                {errors.email && (
+                  <motion.span 
+                    className="error-message"
+                    initial={{ opacity: 0, y: -5 }}
+                    animate={{ opacity: 1, y: 0 }}
+                  >
+                    {errors.email.message}
+                  </motion.span>
+                )}
               </div>
               
               <div className="form-group">
                 <input
                   type="text"
-                  name="carModel"
                   placeholder="Модель авто (необов'язково)"
-                  value={formData.carModel}
-                  onChange={handleChange}
+                  {...register('carModel')}
                 />
               </div>
               
               <div className="form-group">
                 <textarea
-                  name="message"
                   placeholder="Додаткова інформація"
-                  value={formData.message}
-                  onChange={handleChange}
+                  {...register('message')}
                   rows="4"
                 ></textarea>
               </div>
               
-              <button type="submit" className="submit-button">
-                Відправити заявку
-              </button>
+              <motion.button 
+                type="submit" 
+                className="submit-button"
+                disabled={isSubmitting}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                {isSubmitting ? (
+                  <span className="loading-spinner">Відправка...</span>
+                ) : (
+                  'Відправити заявку'
+                )}
+              </motion.button>
             </form>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

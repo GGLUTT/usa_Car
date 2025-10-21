@@ -1,5 +1,6 @@
 import React from 'react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
+import { useCounterAnimation } from '../hooks/useCounterAnimation';
 import bmwG80 from '../images/rs6.png';
 import g63 from '../images/g63.png';
 import m4bmw from '../images/m4bmw.png';
@@ -9,6 +10,12 @@ const AboutSection = () => {
   const [titleRef, titleVisible] = useScrollAnimation();
   const [contentRef, contentVisible] = useScrollAnimation();
   const [statsRef, statsVisible] = useScrollAnimation();
+  
+  // Counter animations for stats
+  const carsCount = useCounterAnimation(500, 2000, statsVisible);
+  const yearsCount = useCounterAnimation(5, 2000, statsVisible);
+  const satisfactionCount = useCounterAnimation(100, 2000, statsVisible);
+  const savingsCount = useCounterAnimation(40, 2000, statsVisible);
 
   return (
     <section id="about" className="about-section">
@@ -89,19 +96,19 @@ const AboutSection = () => {
         >
           <div className="stats-container">
             <div className="stat-card" style={{'--delay': '0.1s'}}>
-              <div className="stat-number">500+</div>
+              <div className="stat-number">{carsCount}+</div>
               <div className="stat-label">Пригнаних авто</div>
             </div>
             <div className="stat-card" style={{'--delay': '0.2s'}}>
-              <div className="stat-number">5</div>
+              <div className="stat-number">{yearsCount}</div>
               <div className="stat-label">Років досвіду</div>
             </div>
             <div className="stat-card" style={{'--delay': '0.3s'}}>
-              <div className="stat-number">100%</div>
+              <div className="stat-number">{satisfactionCount}%</div>
               <div className="stat-label">Задоволених клієнтів</div>
             </div>
             <div className="stat-card" style={{'--delay': '0.4s'}}>
-              <div className="stat-number">40%</div>
+              <div className="stat-number">{savingsCount}%</div>
               <div className="stat-label">Середня економія</div>
             </div>
           </div>

@@ -41,9 +41,8 @@
   max-width: 1200px;
   width: 100%;
   padding: 0 40px;
-  opacity: 0;
-  transform: translateY(40px);
-  transition: all 1s ease-out;
+  z-index: 10;
+  position: relative;
 }
 
 .hero-content.visible {
@@ -69,6 +68,8 @@
   color: white;
   letter-spacing: 1px;
   margin-bottom: 0.5rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5),
+               0 0 20px rgba(255, 107, 53, 0.3);
 }
 
 .title-accent {
@@ -139,10 +140,21 @@
   display: flex;
   gap: 3rem;
   justify-self: start;
+  flex-wrap: wrap;
 }
 
 .stat {
-  text-align: left;
+  text-align: center;
+  padding: 0.5rem 1rem;
+  background: transparent;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  position: relative;
+  min-width: 120px;
+}
+
+.stat:hover {
+  transform: scale(1.05);
 }
 
 .stat .number {
@@ -155,15 +167,16 @@
   -webkit-text-fill-color: transparent;
   background-clip: text;
   line-height: 1;
+  margin-bottom: 0.3rem;
 }
 
 .stat .label {
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.8);
   text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-top: 0.3rem;
+  letter-spacing: 1px;
+  font-weight: 600;
 }
 
 .scroll-hint {
@@ -219,6 +232,7 @@
   
   .hero-stats {
     gap: 2rem;
+    justify-content: center;
   }
   
   .hero-actions {
@@ -247,6 +261,24 @@
   }
 }
 
+
+/* Додаткові стилі для гарантії видимості */
+.hero-title,
+.hero-description,
+.hero-actions,
+.hero-stats {
+  will-change: transform, opacity;
+}
+
+/* Текстові ефекти */
+@keyframes glow {
+  from {
+    filter: drop-shadow(0 0 10px rgba(255, 107, 53, 0.5));
+  }
+  to {
+    filter: drop-shadow(0 0 20px rgba(255, 107, 53, 0.8));
+  }
+}
 
 /* Покращені анімації для Hero */
 .hero-title.text-visible .title-main {

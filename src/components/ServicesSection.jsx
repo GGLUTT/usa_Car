@@ -1,16 +1,68 @@
-import React from 'react';
+import { useRef, useEffect } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './ServicesSection.css';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
-
 // Імпорт іконок
 import sedanIcon from '../images/icons/sedan.png';
 import documentsIcon from '../images/icons/paper-documents.png';
 import locationIcon from '../images/icons/pin-location.png';
 import publicRelationIcon from '../images/icons/public-relation.png';
 
+gsap.registerPlugin(ScrollTrigger);
+
 const ServicesSection = () => {
+  const sectionRef = useRef(null);
+  const cardsRef = useRef([]);
   const [titleRef, titleVisible] = useScrollAnimation(0.1);
   const [servicesRef, servicesVisible] = useScrollAnimation(0.1);
+
+  useEffect(() => {
+    // Анімація карток з різними напрямками
+    cardsRef.current.forEach((card, index) => {
+      if (card) {
+        const direction = index % 2 === 0 ? -100 : 100;
+        gsap.from(card, {
+          scrollTrigger: {
+            trigger: card,
+            start: 'top 85%',
+            toggleActions: 'play none none reverse'
+          },
+          x: direction,
+          opacity: 0,
+          rotation: index % 2 === 0 ? -5 : 5,
+          duration: 1,
+          delay: index * 0.15,
+          ease: 'power3.out'
+        });
+
+        // Hover ефект з масштабуванням
+        card.addEventListener('mouseenter', () => {
+          gsap.to(card, {
+            scale: 1.08,
+            y: -15,
+            boxShadow: '0 20px 40px rgba(255, 107, 53, 0.3)',
+            duration: 0.4,
+            ease: 'power2.out'
+          });
+        });
+
+        card.addEventListener('mouseleave', () => {
+          gsap.to(card, {
+            scale: 1,
+            y: 0,
+            boxShadow: '0 4px 15px rgba(0, 0, 0, 0.1)',
+            duration: 0.4,
+            ease: 'power2.out'
+          });
+        });
+      }
+    });
+
+    return () => {
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+    };
+  }, []);
 
   const services = [
     {
@@ -44,7 +96,7 @@ const ServicesSection = () => {
   ];
 
   return (
-    <section className="services-section">
+    <section ref={sectionRef} id="services" className="services-section">
       <div className="container">
         <div 
           ref={titleRef}
@@ -64,7 +116,8 @@ const ServicesSection = () => {
         >
           {services.map((service, index) => (
             <div 
-              key={service.id} 
+              key={service.id}
+              ref={el => cardsRef.current[index] = el}
               className="service-card"
               style={{animationDelay: `${index * 0.2}s`}}
             >

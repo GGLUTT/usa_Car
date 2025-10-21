@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Tilt from 'react-parallax-tilt';
 import './CarsSection.css';
-
 // Імпорт зображень з галереї
 import gallery1 from '../images/gallery/gallery1.jpg';
 import gallery2 from '../images/gallery/gallery2.jpg';
@@ -10,7 +12,12 @@ import gallery5 from '../images/gallery/gallery5.jpg';
 import gallery6 from '../images/gallery/gallery6.jpg';
 import gallery7 from '../images/gallery/gallery7.jpg';
 
+gsap.registerPlugin(ScrollTrigger);
+
 const CarsSection = () => {
+  const sectionRef = useRef(null);
+  const titleRef = useRef(null);
+  const cardsRef = useRef([]);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
@@ -93,22 +100,66 @@ const CarsSection = () => {
     }
   }, [isAutoPlaying, totalSlides]);
 
-  // Анімація появи
+  // GSAP анімації
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
+    // Анімація заголовка
+    gsap.from(titleRef.current, {
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: 'top 80%',
+        end: 'top 50%',
+        toggleActions: 'play none none reverse'
       },
-      { threshold: 0.1 }
-    );
+      y: 100,
+      opacity: 0,
+      duration: 1,
+      ease: 'power3.out'
+    });
 
-    const section = document.querySelector('.cars-section');
-    if (section) observer.observe(section);
+    // Анімація карток з 3D ефектом
+    cardsRef.current.forEach((card, index) => {
+      if (card) {
+        gsap.from(card, {
+          scrollTrigger: {
+            trigger: card,
+            start: 'top 85%',
+            toggleActions: 'play none none reverse'
+          },
+          y: 100,
+          opacity: 0,
+          rotationY: 45,
+          duration: 1,
+          delay: index * 0.1,
+          ease: 'power3.out'
+        });
 
-    return () => observer.disconnect();
-  }, []);
+        // Hover анімація
+        card.addEventListener('mouseenter', () => {
+          gsap.to(card, {
+            y: -20,
+            scale: 1.05,
+            duration: 0.3,
+            ease: 'power2.out'
+          });
+        });
+
+        card.addEventListener('mouseleave', () => {
+          gsap.to(card, {
+            y: 0,
+            scale: 1,
+            duration: 0.3,
+            ease: 'power2.out'
+          });
+        });
+      }
+    });
+
+    setIsVisible(true);
+
+    return () => {
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+    };
+  }, [currentSlide]);
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % totalSlides);
@@ -123,9 +174,9 @@ const CarsSection = () => {
   };
 
   return (
-    <section className={`cars-section ${isVisible ? 'visible' : ''}`}>
+    <section ref={sectionRef} id="cars" className={`cars-section ${isVisible ? 'visible' : ''}`}>
       <div className="container">
-        <div className="section-header">
+        <div ref={titleRef} className="section-header">
           <h2 className="section-title">
             Популярні <span className="highlight">моделі</span>
           </h2>
@@ -145,36 +196,48 @@ const CarsSection = () => {
                 <div key={slideIndex} className="carousel-slide">
                   <div className="cars-grid">
                     {group.map((car, carIndex) => (
-                      <div 
-                        key={car.id} 
-                        className="car-card"
-                        style={{ animationDelay: `${carIndex * 0.1}s` }}
+                      <Tilt
+                        key={car.id}
+                        tiltMaxAngleX={10}
+                        tiltMaxAngleY={10}
+                        scale={1.02}
+                        transitionSpeed={2000}
+                        glareEnable={true}
+                        glareMaxOpacity={0.3}
+                        glareColor="#ff6b35"
+                        glarePosition="all"
                       >
-                        <div className="car-image">
-                          <img src={car.image} alt={car.name} />
-                          <div className="car-overlay">
-                            <button className="details-btn">Детальніше</button>
+                        <div 
+                          ref={el => cardsRef.current[slideIndex * 3 + carIndex] = el}
+                          className="car-card"
+                          style={{ animationDelay: `${carIndex * 0.1}s` }}
+                        >
+                          <div className="car-image">
+                            <img src={car.image} alt={car.name} />
+                            <div className="car-overlay">
+                              <button className="details-btn">Детальніше</button>
+                            </div>
                           </div>
-                        </div>
-                        
-                        <div className="car-info">
-                          <h3 className="car-name">{car.name}</h3>
                           
-                          <div className="price-info">
-                            <div className="price-row">
-                              <span className="label">США:</span>
-                              <span className="price usa">{car.price}</span>
-                            </div>
-                            <div className="price-row">
-                              <span className="label">Україна:</span>
-                              <span className="price ukraine">{car.ukrainePrice}</span>
-                            </div>
-                            <div className="savings">
-                              <span className="savings-text">Економія: {car.savings}</span>
+                          <div className="car-info">
+                            <h3 className="car-name">{car.name}</h3>
+                            
+                            <div className="price-info">
+                              <div className="price-row">
+                                <span className="label">США:</span>
+                                <span className="price usa">{car.price}</span>
+                              </div>
+                              <div className="price-row">
+                                <span className="label">Україна:</span>
+                                <span className="price ukraine">{car.ukrainePrice}</span>
+                              </div>
+                              <div className="savings">
+                                <span className="savings-text">Економія: {car.savings}</span>
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </div>
+                      </Tilt>
                     ))}
                   </div>
                 </div>
