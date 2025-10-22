@@ -19,13 +19,13 @@
 }
 
 .layer-1 {
-  background: radial-gradient(circle at 20% 80%, rgba(255, 107, 53, 0.3) 0%, transparent 50%),
-              radial-gradient(circle at 80% 20%, rgba(247, 147, 30, 0.3) 0%, transparent 50%);
+  background: radial-gradient(circle at 20% 80%, rgba(74, 144, 226, 0.3) 0%, transparent 50%),
+              radial-gradient(circle at 80% 20%, rgba(100, 181, 246, 0.3) 0%, transparent 50%);
   z-index: 1;
 }
 
 .layer-2 {
-  background: radial-gradient(circle at 40% 40%, rgba(255, 210, 63, 0.2) 0%, transparent 50%);
+  background: radial-gradient(circle at 40% 40%, rgba(129, 212, 250, 0.2) 0%, transparent 50%);
   z-index: 2;
 }
 

@@ -41,7 +41,7 @@ const ServicesSection = () => {
           gsap.to(card, {
             scale: 1.08,
             y: -15,
-            boxShadow: '0 20px 40px rgba(255, 107, 53, 0.3)',
+            boxShadow: '0 20px 40px rgba(74, 144, 226, 0.3)',
             duration: 0.4,
             ease: 'power2.out'
           });

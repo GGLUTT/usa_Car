@@ -93,6 +93,8 @@ const HeroSection = () => {
       </video>
       
       <div className="hero-overlay"></div>
+
+      
       
       <div ref={heroRef} className={`hero-content ${isVisible ? 'visible' : ''}`}>
         <div className="hero-text-container">

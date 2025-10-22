@@ -1,6 +1,6 @@
 .cars-section {
   padding: 80px 0;
-  background: #0a0a0a;
+  background: #0d1b2a;
   opacity: 0;
   transform: translateY(30px);
   transition: all 0.8s ease;
@@ -30,7 +30,7 @@
 }
 
 .highlight {
-  color: #ff6b35;
+  color: #4a90e2;
   position: relative;
 }
 
@@ -41,7 +41,7 @@
   left: 0;
   width: 0;
   height: 2px;
-  background: #ff6b35;
+  background: #4a90e2;
   animation: expandLine 1s ease 0.5s forwards;
 }
 
@@ -77,7 +77,7 @@
 }
 
 .car-card {
-  background: #1a1a1a;
+  background: #1b263b;
   border-radius: 15px;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -88,9 +88,9 @@
 }
 
 .car-card:hover {
-  border-color: rgba(255, 107, 53, 0.4);
+  border-color: rgba(74, 144, 226, 0.4);
   transform: translateY(-8px);
-  box-shadow: 0 15px 30px rgba(255, 107, 53, 0.2);
+  box-shadow: 0 15px 30px rgba(74, 144, 226, 0.2);
 }
 
 .car-image {
@@ -130,7 +130,7 @@
 
 .details-btn {
   padding: 10px 20px;
-  background: #ff6b35;
+  background: #4a90e2;
   color: white;
   border: none;
   border-radius: 20px;
@@ -146,7 +146,7 @@
 }
 
 .details-btn:hover {
-  background: #e55a2b;
+  background: #2171c7;
   transform: scale(1.05);
 }
 
@@ -163,7 +163,9 @@
 }
 
 .price-info {
-  space-y: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
 }
 
 .price-row {
@@ -184,15 +186,15 @@
 }
 
 .price.usa {
-  color: #4CAF50;
+  color: #4a90e2;
 }
 
 .price.ukraine {
-  color: #ff6b35;
+  color: #4a90e2;
 }
 
 .savings {
-  background: rgba(76, 175, 80, 0.1);
+  background: rgba(74, 144, 226, 0.1);
   padding: 0.8rem;
   border-radius: 8px;
   text-align: center;
@@ -212,7 +214,7 @@
   transform: translateY(-50%);
   width: 50px;
   height: 50px;
-  background: rgba(255, 107, 53, 0.9);
+  background: rgba(74, 144, 226, 0.9);
   border: none;
   border-radius: 50%;
   color: white;
@@ -223,9 +225,9 @@
 }
 
 .nav-btn:hover {
-  background: #ff6b35;
+  background: #4a90e2;
   transform: translateY(-50%) scale(1.1);
-  box-shadow: 0 5px 15px rgba(255, 107, 53, 0.4);
+  box-shadow: 0 5px 15px rgba(74, 144, 226, 0.4);
 }
 
 .nav-btn.prev {
@@ -260,7 +262,7 @@
 }
 
 .dot.active {
-  background: #ff6b35;
+  background: #4a90e2;
   transform: scale(1.2);
 }
 
@@ -284,17 +286,17 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  border: 2px solid rgba(255, 107, 53, 0.3);
-  background: rgba(255, 107, 53, 0.1);
-  color: #ff6b35;
+  border: 2px solid rgba(74, 144, 226, 0.3);
+  background: rgba(74, 144, 226, 0.1);
+  color: #4a90e2;
   cursor: pointer;
   transition: all 0.3s ease;
   font-size: 1rem;
 }
 
 .auto-play-btn:hover {
-  background: rgba(255, 107, 53, 0.2);
-  border-color: rgba(255, 107, 53, 0.5);
+  background: rgba(74, 144, 226, 0.2);
+  border-color: rgba(74, 144, 226, 0.5);
   transform: scale(1.05);
 }
 

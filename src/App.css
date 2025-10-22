@@ -11,9 +11,9 @@ html {
 body {
   font-family: 'Montserrat', 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.6;
-  color: #ffffff;
+  color: #e0e1dd;
   overflow-x: hidden;
-  background: #0a0a0a;
+  background: #0d1b2a;
 }
 
 .container {
@@ -27,14 +27,14 @@ body {
   font-size: clamp(2.5rem, 5vw, 4rem);
   font-weight: 700;
   margin-bottom: 2rem;
-  color: white;
+  color: #e0e1dd;
   text-align: center;
   letter-spacing: 1px;
   text-transform: uppercase;
 }
 
 .highlight {
-  background: linear-gradient(45deg, #ff6b35, #f7931e);
+  background: linear-gradient(45deg, #4a90e2, #64b5f6);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -85,23 +85,21 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #1a1a1a;
+  background: #1b263b;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(45deg, #ff6b35, #f7931e);
+  background: linear-gradient(45deg, #4a90e2, #64b5f6);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(45deg, #f7931e, #ff6b35);
+  background: linear-gradient(45deg, #64b5f6, #4a90e2);
 }
 
 /* Selection color */
 ::selection {
-  background: rgba(255, 107, 53, 0.3);
-  color: white;
+  background: rgba(74, 144, 226, 0.3);
+  color: #e0e1dd;
 }
-
-cursor: none;
 

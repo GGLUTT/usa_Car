@@ -1,7 +1,6 @@
 .about-section {
   padding: 100px 0;
-  background: #ffffff;
-background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  background: linear-gradient(135deg, #0d1b2a 0%, #1b263b 100%);
   position: relative;
 }
 
@@ -34,7 +33,7 @@ background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
 }
 
 .highlight {
-  color: #e74c3c;
+  color: #4a90e2;
 }
 
 .about-cards {
@@ -67,7 +66,7 @@ background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
 .card-image {
   height: 200px;
   overflow: hidden;
-  background: linear-gradient(135deg, #ea9066 0%, #a28b4b 100%);
+  background: linear-gradient(135deg, #4a90e2 0%, #2c3e50 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -120,13 +119,15 @@ background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
 }
 
 .btn-primary {
-  background: #e74c3c;
+  background: linear-gradient(45deg, #4a90e2, #64b5f6);
   color: white;
+  box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
 }
 
 .btn-primary:hover {
-  background: #c0392b;
+  background: linear-gradient(45deg, #64b5f6, #4a90e2);
   transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(74, 144, 226, 0.5);
 }
 
 .btn-secondary {
@@ -171,14 +172,14 @@ background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
 .stat-number {
   font-size: 4rem;
   font-weight: 900;
-  background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+  background: linear-gradient(135deg, #4a90e2 0%, #64b5f6 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   margin-bottom: 0.5rem;
   line-height: 1;
-  text-shadow: 0 0 30px rgba(255, 107, 53, 0.5);
-  filter: drop-shadow(0 0 20px rgba(255, 107, 53, 0.7));
+  text-shadow: 0 0 30px rgba(74, 144, 226, 0.5);
+  filter: drop-shadow(0 0 20px rgba(74, 144, 226, 0.7));
 }
 
 .stat-label {

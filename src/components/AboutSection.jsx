@@ -37,7 +37,10 @@ const AboutSection = () => {
         >
           <div className="about-card" style={{'--delay': '0.1s'}}>
             <div className="card-image">
-              <img src={bmwG80} alt="BMW G80" />
+              <img 
+              src={bmwG80} 
+              alt="BMW G80" 
+              />
             </div>
             <div className="card-content">
               <h3>Виняткова цінність</h3>

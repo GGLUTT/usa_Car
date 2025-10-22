@@ -51,7 +51,7 @@ const ParticleBackground = () => {
         // Малювання частинки
         ctx.beginPath();
         ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 107, 53, ${particle.opacity})`;
+        ctx.fillStyle = `rgba(74, 144, 226, ${particle.opacity})`;
         ctx.fill();
       });
       
@@ -66,7 +66,7 @@ const ParticleBackground = () => {
             ctx.beginPath();
             ctx.moveTo(particlesRef.current[i].x, particlesRef.current[i].y);
             ctx.lineTo(particlesRef.current[j].x, particlesRef.current[j].y);
-            ctx.strokeStyle = `rgba(255, 107, 53, ${0.1 * (1 - distance / 100)})`;
+            ctx.strokeStyle = `rgba(74, 144, 226, ${0.1 * (1 - distance / 100)})`;
             ctx.stroke();
           }
         }

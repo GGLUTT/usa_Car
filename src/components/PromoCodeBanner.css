@@ -28,10 +28,10 @@
   align-items: center;
   gap: 14px;
   padding: 16px 20px;
-  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+  background: linear-gradient(135deg, #4a90e2 0%, #2171c7 100%);
   border-radius: 20px;
   box-shadow: 
-    0 20px 60px rgba(249, 115, 22, 0.5),
+    0 20px 60px rgba(74, 144, 226, 0.5),
     0 0 0 1px rgba(255, 255, 255, 0.2),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(20px) saturate(180%);
@@ -47,7 +47,7 @@
   content: '';
   position: absolute;
   inset: -2px;
-  background: linear-gradient(135deg, #fb923c, #f97316, #fdba74, #fb923c);
+  background: linear-gradient(135deg, #64b5f6, #4a90e2, #81d4fa, #64b5f6);
   background-size: 300% 300%;
   border-radius: 20px;
   z-index: -1;
@@ -67,8 +67,8 @@
 .promo-banner-content:hover {
   transform: translateY(-2px);
   box-shadow: 
-    0 25px 70px rgba(249, 115, 22, 0.6),
-    0 0 0 1px rgba(251, 146, 60, 0.7),
+    0 25px 70px rgba(74, 144, 226, 0.6),
+    0 0 0 1px rgba(100, 181, 246, 0.7),
     inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
@@ -83,7 +83,7 @@
   background: conic-gradient(
     from 0deg,
     transparent 0deg,
-    rgba(251, 146, 60, 0.25) 60deg,
+    rgba(100, 181, 246, 0.25) 60deg,
     transparent 120deg
   );
   animation: rotate 4s linear infinite;
@@ -96,10 +96,10 @@
 }
 
 .promo-banner-icon {
-  color: #fef3c7;
+  color: #e3f2fd;
   flex-shrink: 0;
   animation: float 3s ease-in-out infinite;
-  filter: drop-shadow(0 0 15px rgba(254, 243, 199, 0.9));
+  filter: drop-shadow(0 0 15px rgba(227, 242, 253, 0.9));
   z-index: 2;
   position: relative;
 }
@@ -154,13 +154,13 @@
 }
 
 .promo-banner-code {
-  color: #fef3c7;
+  color: #e3f2fd;
   font-size: 22px;
   font-weight: 800;
   font-family: 'JetBrains Mono', monospace;
   letter-spacing: 4px;
   text-shadow: 
-    0 0 25px rgba(254, 243, 199, 0.8),
+    0 0 25px rgba(227, 242, 253, 0.8),
     0 2px 6px rgba(0, 0, 0, 0.6),
     0 0 10px rgba(255, 255, 255, 0.4);
 }

@@ -204,7 +204,7 @@ const CarsSection = () => {
                         transitionSpeed={2000}
                         glareEnable={true}
                         glareMaxOpacity={0.3}
-                        glareColor="#ff6b35"
+                        glareColor="#4a90e2"
                         glarePosition="all"
                       >
                         <div 

@@ -259,14 +259,14 @@ const CarQuizGame = ({ isOpen, onClose }) => {
 
   const getTimeColor = () => {
     if (timeLeft > 10) return '#10b981';
-    if (timeLeft > 5) return '#f59e0b';
+    if (timeLeft > 5) return '#4a90e2';
     return '#ef4444';
   };
 
   const getDifficultyColor = (difficulty) => {
     switch(difficulty) {
       case 'easy': return '#10b981';
-      case 'medium': return '#f59e0b';
+      case 'medium': return '#4a90e2';
       case 'hard': return '#ef4444';
       default: return '#6b7280';
     }
