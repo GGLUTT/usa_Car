@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "./static/css/main.d076993b.css",
-    "main.js": "./static/js/main.ad52879c.js",
+    "main.css": "./static/css/main.5280f91b.css",
+    "main.js": "./static/js/main.e7b20a14.js",
     "static/js/453.f9586ee7.chunk.js": "./static/js/453.f9586ee7.chunk.js",
     "static/media/bcg_bmw.mp4": "./static/media/bcg_bmw.5692726e2c3538868f95.mp4",
     "static/media/gallery5.jpg": "./static/media/gallery5.8f108eb6ce36f533400f.jpg",
@@ -21,12 +21,12 @@
     "static/media/pin-location.png": "./static/media/pin-location.19824315be34b30804bc.png",
     "static/media/sedan.png": "./static/media/sedan.1719fcebea9704830cae.png",
     "index.html": "./index.html",
-    "main.d076993b.css.map": "./static/css/main.d076993b.css.map",
-    "main.ad52879c.js.map": "./static/js/main.ad52879c.js.map",
+    "main.5280f91b.css.map": "./static/css/main.5280f91b.css.map",
+    "main.e7b20a14.js.map": "./static/js/main.e7b20a14.js.map",
     "453.f9586ee7.chunk.js.map": "./static/js/453.f9586ee7.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.d076993b.css",
-    "static/js/main.ad52879c.js"
+    "static/css/main.5280f91b.css",
+    "static/js/main.e7b20a14.js"
   ]
 }
